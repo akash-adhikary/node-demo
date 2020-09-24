@@ -33,3 +33,32 @@ exports.helloworld = functions.https.onRequest((request, response)=>
 // app.get("/",(req, res)=> {
 //         res.send("<h1>hello World<h1/>");
 //     });
+
+// const getName = functions.https.onRequest((request, response) => {
+//   response.send('Jim');
+
+// });
+
+// exports.getName = getName;
+
+exports.toTheDojo = functions.https.onRequest((req,res) => {
+  res.redirect('https://www.google.com');
+});
+
+function abc(req,response)
+{
+  response.send('Jim');
+}
+
+const getName = functions.https.onRequest( (request, response) =>{
+  abc(request,response);
+});
+
+exports.getName = getName;
+
+//callback function
+
+exports.sayHello = functions.https.onCall((data, context)=>{
+  const name = data.name;
+  return `hello, ${name}`;
+});
